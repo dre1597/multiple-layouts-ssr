@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { NgbNavbarComponent } from './themes/ngb/ngb-navbar/ngb-navbar.component';
-import { PngNavbarComponent } from './themes/primeng/png-navbar/png-navbar.component';
-import { HttpClient } from '@angular/common/http';
+import { NgbNavbarComponent } from './themes/ngb/ngb-navbar.component';
+import { PngNavbarComponent } from './themes/primeng/png-navbar.component';
 import { NgIf } from '@angular/common';
 import { ContainerComponent } from './common/components/container.component';
+import { ThemeService } from './common/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -13,22 +13,14 @@ import { ContainerComponent } from './common/components/container.component';
   imports: [RouterOutlet, NgbNavbarComponent, PngNavbarComponent, NgIf, ContainerComponent],
   template: `
     <app-container></app-container>
+    <button (click)="changeLayout()">Change Layout</button>
 
     <router-outlet></router-outlet>`,
 })
-// export class AppComponent implements OnInit{
 export class AppComponent {
-  protected selectedLayout: number | undefined;
-  private readonly http = inject(HttpClient);
+  private readonly themeService = inject(ThemeService);
 
-  // public ngOnInit(): void {
-  //   this.fetchLayout();
-  // }
-  //
-  // private fetchLayout(): void {
-  //   this.http.get<{id: number}>('http://localhost:3000/layout')
-  //     .subscribe({
-  //       next: ({id}) => this.selectedLayout = id
-  //     });
-  // }
+  protected changeLayout(): void {
+    this.themeService.changeLayout();
+  }
 }

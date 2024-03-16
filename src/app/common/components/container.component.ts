@@ -1,7 +1,8 @@
 import { Component, effect, inject, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+
 import { ThemeService } from '../services/theme.service';
-import { NgbNavbarComponent } from '../../themes/ngb/ngb-navbar/ngb-navbar.component';
-import { PngNavbarComponent } from '../../themes/primeng/png-navbar/png-navbar.component';
+import { NgbNavbarComponent } from '../../themes/ngb/ngb-navbar.component';
+import { PngNavbarComponent } from '../../themes/primeng/png-navbar.component';
 
 @Component({
   selector: 'app-container',
@@ -17,7 +18,7 @@ export class ContainerComponent implements OnInit {
 
   public ngOnInit(): void {
     effect(() => {
-      const selectedLayout = this.themeService.selectedLayout()
+      const selectedLayout = this.themeService.selectedLayout();
       this.loadComponent(selectedLayout);
     }, {
       injector: this.injector
