@@ -3,7 +3,9 @@
     {
       "id": "1",
       "name": "John",
-      "layout": 2
+      "layout": 2,
+      "bgColor": "red-900",
+      "color": "red-100"
     }
   ]
 }

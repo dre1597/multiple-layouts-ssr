@@ -1,26 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { NgbNavbarComponent } from './themes/ngb/ngb-navbar.component';
-import { PngNavbarComponent } from './themes/primeng/png-navbar.component';
 import { NgIf } from '@angular/common';
-import { ContainerComponent } from './common/components/container.component';
-import { ThemeService } from './common/services/theme.service';
+import { NavbarComponent } from './components/layout/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgbNavbarComponent, PngNavbarComponent, NgIf, ContainerComponent],
+  imports: [RouterOutlet, NgIf, NavbarComponent],
   template: `
-    <app-container></app-container>
-    <button (click)="changeLayout()">Change Layout</button>
-
+    <app-navbar></app-navbar>
     <router-outlet></router-outlet>`,
 })
 export class AppComponent {
-  private readonly themeService = inject(ThemeService);
-
-  protected changeLayout(): void {
-    this.themeService.changeLayout();
-  }
 }
